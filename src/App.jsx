@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -21,6 +21,10 @@ export function App() {
   };
 
   const onClickClose = useCallback(() => setOpen(false), [setOpen])
+
+  // 変数のmemo化。空配列[]を第二引数としているので、初期値(4)から変更されなければ再レンダリングの対象とはならない
+  const temp = useMemo(() => 1 + 3, []);
+  console.log(temp);
 
   return (
     <div className="App">
