@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -20,13 +20,15 @@ export function App() {
     setOpen(!open);
   };
 
+  const onClickClose = useCallback(() => setOpen(false), [setOpen])
+
   return (
     <div className="App">
       <input value={text} onChange={onChangeText} />
       <br />
       <br />
       <button onClick={onClickOpen}>Show</button>
-      <ChildArea open={open} />
+      <ChildArea open={open} onClickClose={onClickClose}/>
     </div>
   );
 }
